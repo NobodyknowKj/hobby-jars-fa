@@ -116,7 +116,7 @@ canvas#shareCanvas{display:none}
       <button class="btn ghost" id="linkBtn">🔗 لینک من</button>
       <button class="btn ghost" id="shareBtn">↗️ اشتراک‌گذاری</button>
     </div>
-    <p class="hint">عکس نتیجه عمودیِ جمع‌وجوره (۱۰۸۰×۱۳۵۰)؛ برای پست، وضعیت واتساپ و گروه دوستات عالیه. لینک من هم فقط همین امتیازها رو داخل خودش داره، روی هیچ سروری ذخیره نمی‌شه.</p>
+    <p class="hint">عکس نتیجه یه صفحه‌ی شیشه‌هاست (۱۰۸۰×۱۴۸۰)؛ برای پست، وضعیت واتساپ و گروه دوستات عالیه. لینک من هم فقط همین امتیازها رو داخل خودش داره، روی هیچ سروری ذخیره نمی‌شه.</p>
   </section>
 
   <section class="card">
@@ -132,7 +132,7 @@ canvas#shareCanvas{display:none}
   </footer>
 </div>
 <div id="toast"></div>
-<canvas id="shareCanvas" width="1080" height="1350"></canvas>
+<canvas id="shareCanvas" width="1080" height="1480"></canvas>
 <script>
 const JARS=[
  {emoji:"🎮",name:"گیم",color:"#8b5cf6",tag:"دنیای دیجیتال",items:["بازی موبایلی","بازی PC و کنسول","بازی رومیزی و دورهمی","تماشای استریم و گیم‌پلی"],persona:"گیمرِ شب‌زنده‌دار",challenge:"این هفته یه بازی کوآپ با یه دوست رو امتحان کن.",suggest:"یه شب گیمِ دورهمی با خوراکی و بازی کوآپ بذارید."},
@@ -214,47 +214,71 @@ function renderCompare(fd){
  <p>💡 <b>پیشنهاد دورهمی:</b> ${bestCommon?bestCommon.suggest:"یه چیزی که هیچ‌کدوم‌تون تا حالا امتحان نکردید رو با هم شروع کنید."}</p></div>
  <div class="top3">${JARS.map((j,i)=>{const a=jarAvgFrom(ratings,i),b=jarAvgFrom(fd.r,i);return `<div class="toprow" style="--jc:${j.color}"><span style="min-width:110px">${j.emoji} ${j.name}</span><div class="bar"><i style="width:${a/5*100}%"></i></div><span>${a?fa(Math.round(a/5*100))+"٪":"—"}</span><span style="color:var(--muted)"> / </span><span>${b?fa(Math.round(b/5*100))+"٪":"—"}</span></div>`}).join("")}</div>`;
 }
+function wrapLines(x,text,maxW){
+ const words=text.split(" ");const lines=[];let cur="";
+ words.forEach(w=>{const t=cur?cur+" "+w:w;if(x.measureText(t).width<=maxW||!cur){cur=t}else{lines.push(cur);cur=w}});
+ if(cur)lines.push(cur);return lines;
+}
+function drawJar(x,cx,topY,color,rating,seed){
+ const jarW=86,jarH=148,lidH=20,lidW=94,bodyTop=topY+lidH,bodyBottom=bodyTop+jarH;
+ x.lineWidth=3;x.strokeStyle="#111";
+ // lid
+ x.fillStyle="#f2f2f2";roundRect(x,cx-lidW/2,topY,lidW,lidH,6);x.fill();x.stroke();
+ x.beginPath();x.moveTo(cx-lidW/2+6,topY+7);x.lineTo(cx+lidW/2-6,topY+7);x.moveTo(cx-lidW/2+6,topY+13);x.lineTo(cx+lidW/2-6,topY+13);x.lineWidth=1.5;x.stroke();x.lineWidth=3;
+ // glass
+ x.fillStyle="#ffffff";roundRect(x,cx-jarW/2,bodyTop,jarW,jarH,20);x.fill();
+ if(rating>0){
+   const innerH=jarH-12,fillH=innerH*(rating/5),liqTop=bodyBottom-6-fillH;
+   x.fillStyle=color;roundRect(x,cx-jarW/2+5,liqTop,jarW-10,fillH+1,12);x.fill();
+   // bubbles (deterministic, so the image is stable)
+   x.fillStyle="rgba(255,255,255,.55)";
+   for(let k=0;k<3;k++){const s=seed*7+k*13;const bx=cx-24+((s*7)%48);const by=liqTop+18+((s*11)%Math.max(12,fillH-30));x.beginPath();x.arc(bx,by,3+(s%3),0,7);x.fill()}
+   if(rating===5){
+     // overflowing jar, like the reference: spill over the lid + hearts
+     x.fillStyle=color;roundRect(x,cx-jarW/2+5,topY-12,jarW-10,16,8);x.fill();
+     [[-22,26],[0,34],[22,22]].forEach(d=>{x.fillRect(cx+d[0]-5,bodyTop,d[1]>30?10:10,d[1])});
+     x.fillStyle=color;x.font="20px Vazirmatn, Tahoma";x.textAlign="center";
+     x.fillText("♥",cx-26,topY-20);x.fillText("♥",cx,topY-32);x.fillText("♥",cx+26,topY-20);
+   }
+ }
+ x.strokeStyle="#111";x.lineWidth=3;roundRect(x,cx-jarW/2,bodyTop,jarW,jarH,20);x.stroke();
+}
 function drawShare(){
  const c=$("shareCanvas"),x=c.getContext("2d");
  const vibe=VIBES[vibeIdx], top=sortedJars(ratings);
- x.clearRect(0,0,1080,1350);
- const g=x.createLinearGradient(0,0,1080,1350);g.addColorStop(0,"#1e1035");g.addColorStop(.55,"#12102e");g.addColorStop(1,"#0f0a1e");
- x.fillStyle=g;x.fillRect(0,0,1080,1350);
- x.fillStyle=vibe.a;x.globalAlpha=.25;x.beginPath();x.arc(950,120,260,0,7);x.fill();x.fillStyle=vibe.b;x.beginPath();x.arc(80,1180,240,0,7);x.fill();x.globalAlpha=1;
- x.direction="rtl";x.textAlign="center";
- x.fillStyle="#fff";x.font="900 44px Vazirmatn, Tahoma";x.fillText("🫙 شیشه‌های سرگرمی",540,110);
- x.fillStyle="rgba(255,255,255,.75)";x.font="600 30px Vazirmatn, Tahoma";x.fillText("حال‌وهوای تفریحی من",540,165);
+ x.clearRect(0,0,1080,1480);
+ x.fillStyle="#ffffff";x.fillRect(0,0,1080,1480);
+ x.direction="rtl";
  const t=top.length?top[0].j:null;
- x.fillStyle="#fff";x.font="900 64px Vazirmatn, Tahoma";
- x.fillText(t? t.persona : "هنوز شیشه‌ای پر نکردم!",540,260);
- x.font="600 32px Vazirmatn, Tahoma";x.fillStyle=vibe.a;
- x.fillText((nameVal?("نتیجه‌ی "+nameVal):"نتیجه‌ی من")+" • "+vibe.name,540,325);
- // top 3 bars
- let y=430;
- x.textAlign="right";
- (top.slice(0,3)).forEach(row=>{
-   x.fillStyle="#fff";x.font="800 34px Vazirmatn, Tahoma";x.fillText(row.j.emoji+" "+row.j.name,940,y);
-   x.fillStyle="rgba(255,255,255,.2)";roundRect(x,140,y+18,700,26,13);x.fill();
-   x.fillStyle=row.j.color;roundRect(x,140+(700*(1-row.avg/5)),y+18,700*(row.avg/5),26,13);x.fill();
-   x.textAlign="left";x.fillStyle="#fff";x.font="900 32px Vazirmatn, Tahoma";x.fillText(fa(Math.round(row.avg/5*100))+"٪",60,y+22);x.textAlign="right";
-   y+=105;
+ // header, like the reference: big title, name on the other side, line between
+ x.fillStyle="#111";
+ if(nameVal){
+   x.textAlign="right";x.font="900 72px Vazirmatn, Tahoma";x.fillText("شیشه‌های سرگرمی",1030,100);
+   x.textAlign="left";x.font="800 48px Vazirmatn, Tahoma";x.fillText(nameVal,50,95);
+   const titleW=x.measureText("شیشه‌های سرگرمی").width;
+   x.textAlign="left";const nameW=x.measureText(nameVal).width;
+   x.beginPath();x.moveTo(50+nameW+24,82);x.lineTo(1030-titleW-24,82);x.lineWidth=5;x.strokeStyle="#111";x.stroke();
+ }else{
+   x.textAlign="center";x.font="900 72px Vazirmatn, Tahoma";x.fillText("شیشه‌های سرگرمی",540,100);
+ }
+ x.textAlign="center";x.fillStyle="#444";x.font="600 30px Vazirmatn, Tahoma";
+ x.fillText(t?(t.persona+" • "+vibe.name):vibe.name,540,160);
+ x.fillStyle="#777";x.font="500 26px Vazirmatn, Tahoma";
+ x.fillText("۱ = کمی  •  ۵ = لبریز",540,205);
+ // grid: 8 jars per row x 4 rows = all 32 items, grouped by category
+ const SHORTS=["بازی موبایل","PC و کنسول","بازی رومیزی","تماشای استریم","فیلم سینمایی","سریال ماراتونی","انیمه","تئاتر و استندآپ","گوش‌دادن موزیک","ساز و خواندن","کنسرت زنده","پلی‌لیست‌سازی","رمان","کتاب رشد فردی","پادکست","مهارت تازه","بدنسازی","ورزش تیمی","دو و شنا","کوه و موج‌سواری","نقاشی","عکاسی و فیلم","نوشتن","صنایع دستی","آشپزی","کافه‌گردی","غذای خیابانی","دستور تازه","سفر جاده‌ای","کمپینگ","شهر و موزه","گشت شبانه"];
+ const flat=[];
+ JARS.forEach((j,ji)=>j.items.forEach((it,ki)=>flat.push({label:SHORTS[ji*4+ki],color:j.color,rating:ratings[ji*4+ki]})));
+ const rowH=295,gridTop=235;
+ flat.forEach((it,i)=>{
+   const col=i%8,row=Math.floor(i/8),cx=col*135+67,topY=gridTop+row*rowH;
+   drawJar(x,cx,topY,it.color,it.rating,i);
+   x.fillStyle="#111";x.textAlign="center";x.font="600 19px Vazirmatn, Tahoma";
+   const lines=wrapLines(x,it.label,126);
+   lines.slice(0,4).forEach((ln,li)=>x.fillText(ln,cx,topY+200+li*26));
  });
- // all jars mini: one row of 8 small jars with short labels
- const shorts=["گیم","فیلم","موزیک","کتاب","ورزش","هنر","غذا","سفر"];
- x.textAlign="center";x.fillStyle="rgba(255,255,255,.75)";x.font="600 28px Vazirmatn, Tahoma";x.fillText("همه‌ی شیشه‌ها",540,y+30);
- const my=y+60;
- JARS.forEach((j,i)=>{
-   const cx=85+i*128, avg=jarAvgFrom(ratings,i), h=100*(avg/5);
-   x.fillStyle="rgba(255,255,255,.12)";roundRect(x,cx-45,my,90,115,18);x.fill();
-   if(h>4){x.fillStyle=j.color;roundRect(x,cx-45,my+115-h,90,h,18);x.fill();}
-   x.fillStyle="#fff";x.font="800 26px Vazirmatn, Tahoma";x.fillText(j.emoji, cx, my+150);
-   x.font="600 21px Vazirmatn, Tahoma";x.fillText(shorts[i], cx, my+180);
- });
- // footer
- x.fillStyle="rgba(255,255,255,.85)";x.font="600 26px Vazirmatn, Tahoma";
- if(t) x.fillText("🎯 چالش این هفته: "+t.challenge,540,1175);
- x.fillStyle="#fff";x.font="800 30px Vazirmatn, Tahoma";x.fillText("تو هم شیشه‌هات رو پر کن!",540,1235);
- x.fillStyle="rgba(255,255,255,.65)";x.font="400 24px Vazirmatn, Tahoma";x.fillText("hobby-jars-fa • nobodyknowkj.github.io",540,1290);
+ x.fillStyle="#888";x.font="400 22px Vazirmatn, Tahoma";x.textAlign="center";
+ x.fillText("تو هم شیشه‌هات رو پر کن!  •  nobodyknowkj.github.io/hobby-jars-fa",540,1445);
  return c;
 }
 function roundRect(x,a,b,w,h,r){if(w<=0)return;x.beginPath();x.moveTo(a+r,b);x.arcTo(a+w,b,a+w,b+h,r);x.arcTo(a+w,b+h,a,b+h,r);x.arcTo(a,b+h,a,b,r);x.arcTo(a,b,a+w,b,r);x.closePath()}
