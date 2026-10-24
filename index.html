@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>شیشه‌های سرگرمی | حال‌وهوای تفریحی تو چیه؟</title>
+<meta name="description" content="شیشه‌های سرگرمی: سرگرمی‌ها و علایقت را امتیاز بده، نتیجه را به صورت عکس با دوستانت به اشتراک بگذار و شیشه‌هایت را با آن‌ها مقایسه کن. بدون ذخیره روی سرور.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --accent:#a78bfa; --accent2:#f472b6; --bg:#0f0a1e; --card:rgba(255,255,255,.07);
+  --line:rgba(255,255,255,.14); --text:#fff; --muted:rgba(255,255,255,.72);
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Vazirmatn',Tahoma,sans-serif;background:radial-gradient(900px 500px at 85% -5%,color-mix(in srgb,var(--accent) 45%,transparent),transparent 70%),radial-gradient(700px 500px at 0% 20%,color-mix(in srgb,var(--accent2) 35%,transparent),transparent 70%),var(--bg);color:var(--text);min-height:100vh}
+.wrap{max-width:820px;margin:0 auto;padding:22px 16px 60px}
+.hero{text-align:center;padding:18px 8px 6px}
+.hero .jars{font-size:64px;letter-spacing:6px;filter:drop-shadow(0 10px 24px rgba(0,0,0,.45))}
+h1{font-size:clamp(34px,8vw,56px);margin:6px 0 4px;font-weight:900;line-height:1.15}
+.hero p{color:var(--muted);font-size:17px;line-height:1.9;margin:8px auto;max-width:620px}
+.badge{display:inline-block;background:var(--card);border:1px solid var(--line);padding:6px 14px;border-radius:999px;font-size:13px;color:var(--muted)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:20px;margin:18px 0;backdrop-filter:blur(8px)}
+.step{display:flex;gap:10px;align-items:center;margin-bottom:14px}
+.step b{background:linear-gradient(135deg,var(--accent),var(--accent2));width:34px;height:34px;border-radius:50%;display:grid;place-items:center;flex:none;font-size:15px}
+.step h2{margin:0;font-size:21px}
+.step span{color:var(--muted);font-size:13px;display:block}
+input[type=text]{width:100%;background:rgba(0,0,0,.28);border:1px solid var(--line);color:#fff;border-radius:14px;padding:13px 15px;font:inherit;font-size:17px;outline:none}
+input[type=text]:focus{border-color:var(--accent)}
+.hint{color:var(--muted);font-size:13px;line-height:1.8;margin-top:8px}
+.vibes{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+@media(max-width:560px){.vibes{grid-template-columns:repeat(2,1fr)}}
+.vibe{border:2px solid var(--line);background:rgba(0,0,0,.22);border-radius:18px;padding:12px 8px;cursor:pointer;color:#fff;font:inherit}
+.vibe .sw{height:34px;border-radius:999px;margin-bottom:8px}
+.vibe.sel{border-color:#fff;box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 55%,transparent)}
+.vibe small{display:block;color:var(--muted);font-size:12px}
+.progress{height:12px;background:rgba(0,0,0,.35);border-radius:999px;overflow:hidden}
+.progress i{display:block;height:100%;background:linear-gradient(90deg,var(--accent2),var(--accent));transition:width .4s}
+.progtext{display:flex;justify-content:space-between;color:var(--muted);font-size:13px;margin-top:8px}
+.tools{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 4px}
+.btn{border:0;border-radius:999px;padding:12px 20px;font:inherit;font-weight:800;cursor:pointer}
+.btn.primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff}
+.btn.ghost{background:rgba(255,255,255,.1);color:#fff;border:1px solid var(--line)}
+.btn.small{padding:9px 14px;font-size:13px}
+.jarcard{background:rgba(0,0,0,.22);border:1px solid var(--line);border-radius:22px;padding:16px;margin:14px 0}
+.jarhead{display:flex;gap:14px;align-items:center}
+.jar{width:74px;height:92px;flex:none;border:3px solid rgba(255,255,255,.85);border-radius:10px 10px 26px 26px;position:relative;overflow:hidden;background:rgba(255,255,255,.06)}
+.jar:before{content:"";position:absolute;top:-4px;left:12px;right:12px;height:10px;background:rgba(255,255,255,.85);border-radius:8px}
+.liquid{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(180deg,var(--jc),color-mix(in srgb,var(--jc) 60%,#000));transition:height .5s}
+.liquid:after{content:"🫧";position:absolute;top:4px;right:8px;font-size:14px;opacity:.8}
+.jarhead h3{margin:0;font-size:19px}
+.jarhead p{margin:4px 0 0;color:var(--muted);font-size:13px;line-height:1.7}
+.pct{margin-inline-start:auto;font-weight:900;font-size:22px;white-space:nowrap}
+.items{margin-top:14px;display:grid;gap:8px}
+.item{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.item span{flex:1;min-width:130px;font-size:15px}
+.dots{display:flex;gap:6px}
+.dot{width:34px;height:34px;border-radius:50%;border:1.5px solid var(--line);background:transparent;color:#fff;font:inherit;font-size:13px;cursor:pointer}
+.dot.on{background:var(--jc);border-color:var(--jc);color:#fff;font-weight:900;box-shadow:0 4px 14px color-mix(in srgb,var(--jc) 60%,transparent)}
+.result{text-align:center}
+.result .big{font-size:clamp(28px,7vw,42px);font-weight:900;margin:6px 0}
+.result p{color:var(--muted);line-height:2}
+.top3{text-align:start;display:grid;gap:10px;margin:16px 0}
+.toprow{display:flex;align-items:center;gap:12px}
+.toprow .bar{flex:1;height:14px;background:rgba(0,0,0,.35);border-radius:999px;overflow:hidden}
+.toprow .bar i{display:block;height:100%;background:var(--jc)}
+.sharebox{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:14px}
+textarea{width:100%;min-height:90px;background:rgba(0,0,0,.28);border:1px solid var(--line);color:#fff;border-radius:14px;padding:12px;font:inherit;direction:ltr;text-align:left}
+.compare-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+@media(max-width:560px){.compare-row{grid-template-columns:1fr}}
+.mini{border:1px solid var(--line);border-radius:18px;padding:14px;background:rgba(0,0,0,.2)}
+.mini h4{margin:0 0 8px}
+.mini p{margin:0;color:var(--muted);font-size:14px;line-height:1.9}
+footer{text-align:center;color:var(--muted);font-size:13px;line-height:2;padding:10px}
+footer a{color:#fff}
+#toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#fff;color:#111;padding:12px 20px;border-radius:999px;font-weight:800;display:none;z-index:99;box-shadow:0 10px 30px rgba(0,0,0,.4)}
+canvas#shareCanvas{display:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <div class="jars">🫙🫙🫙</div>
+    <div class="badge">تست سرگرمی • بدون ثبت‌نام • بدون ذخیره روی سرور</div>
+    <h1>شیشه‌های سرگرمی</h1>
+    <p>حال‌وهوای تفریحی تو چیه؟ به هر کاری که دوست داری، از ۱ تا ۵ امتیاز بده؛ دوباره بزنی، خالی می‌شه. آخرش یه عکس جمع‌وجور می‌گیری که راحت با دوستات به اشتراک بذاری.</p>
+  </header>
+
+  <section class="card">
+    <div class="step"><b>۱</b><div><h2>اسمت چیه؟</h2><span>روی عکس نتیجه نوشته می‌شه؛ اسم مستعار هم اوکیه، یا خالی بذارش.</span></div></div>
+    <input id="nameInput" type="text" placeholder="مثلاً: مهرشاد" maxlength="30" autocomplete="off">
+  </section>
+
+  <section class="card">
+    <div class="step"><b>۲</b><div><h2>وایب‌ت رو انتخاب کن</h2><span>رنگ کلی صفحه و عکس نتیجه‌ات عوض می‌شه.</span></div></div>
+    <div class="vibes" id="vibes"></div>
+  </section>
+
+  <section class="card">
+    <div class="step"><b>۳</b><div><h2>شیشه‌هات رو پر کن</h2><span>به هر مورد از ۱ تا ۵ امتیاز بده، یا خالی بذارش. هر چیزی که دوست نداری، لازم نیست بخوای.</span></div></div>
+    <div class="progress"><i id="progBar" style="width:0%"></i></div>
+    <div class="progtext"><span id="progText">۰ از ۳۲ مورد امتیاز داده شده</span><span id="jarText">۰ از ۸ شیشه پر شده</span></div>
+    <div class="tools">
+      <button class="btn ghost small" id="randomBtn">🎲 شانسی پر کن</button>
+      <button class="btn ghost small" id="clearBtn">🧹 پاک کردن همه</button>
+    </div>
+    <div id="jars"></div>
+  </section>
+
+  <section class="card result" id="resultCard">
+    <div class="step"><b>۴</b><div style="text-align:start"><h2>نتیجه‌ات</h2><span>این خلاصه‌ی زنده‌ی شیشه‌هاته؛ هر وقت آماده بودی، عکسش رو بگیر.</span></div></div>
+    <div id="resultBody"><p>هنوز چیزی امتیاز ندادی؛ چند تا مورد رو پر کن تا شخصیت تفریحی‌ات معلوم بشه. ✨</p></div>
+    <div class="sharebox">
+      <button class="btn primary" id="imgBtn">🖼️ دانلود عکس نتیجه</button>
+      <button class="btn ghost" id="copyImgBtn">📋 کپی عکس</button>
+      <button class="btn ghost" id="linkBtn">🔗 لینک من</button>
+      <button class="btn ghost" id="shareBtn">↗️ اشتراک‌گذاری</button>
+    </div>
+    <p class="hint">عکس نتیجه مربعیِ جمع‌وجوره؛ برای استوری، وضعیت واتساپ و گروه دوستات عالیه. لینک من هم فقط همین امتیازها رو داخل خودش داره، روی هیچ سروری ذخیره نمی‌شه.</p>
+  </section>
+
+  <section class="card">
+    <div class="step"><b>۵</b><div><h2>مقایسه با یه دوست</h2><span>شیشه‌هات رو پر کن و «لینک من» رو برای دوستت بفرست. اون هم لینکش رو بهت بده؛ همین‌جا بچسبونش تا ببینی چقدر رفیقِ تفریحی همید.</span></div></div>
+    <textarea id="friendLink" placeholder="لینک دوستت را اینجا بچسبان…"></textarea>
+    <div class="sharebox" style="justify-content:flex-start"><button class="btn primary" id="compareBtn">⚖️ مقایسه کن</button></div>
+    <div id="compareBody"></div>
+  </section>
+
+  <footer>
+    نسخه‌ی فارسیِ سرگرمی • با الهام از ایده‌ی «شیشه‌ها» • ساخته‌شده برای اشتراک‌گذاری با دوستان<br>
+    <span id="siteUrl"></span>
+  </footer>
+</div>
+<div id="toast"></div>
+<canvas id="shareCanvas" width="1080" height="1350"></canvas>
+<script>
+const JARS=[
+ {emoji:"🎮",name:"گیم",color:"#8b5cf6",tag:"دنیای دیجیتال",items:["بازی موبایلی","بازی PC و کنسول","بازی رومیزی و دورهمی","تماشای استریم و گیم‌پلی"],persona:"گیمرِ شب‌زنده‌دار",challenge:"این هفته یه بازی کوآپ با یه دوست رو امتحان کن.",suggest:"یه شب گیمِ دورهمی با خوراکی و بازی کوآپ بذارید."},
+ {emoji:"🎬",name:"فیلم و سریال",color:"#ef4444",tag:"قصه و تصویر",items:["فیلم سینمایی","سریال‌بینی ماراتونی","انیمه و انیمیشن","تئاتر و استندآپ"],persona:"قصه‌بازِ ماراتونی",challenge:"این هفته یه فیلمی که همه تعریفش رو می‌کنن ببین.",suggest:"یه شب فیلم با پاپ‌کورن و رأی‌گیری برای انتخاب فیلم بچینید."},
+ {emoji:"🎵",name:"موزیک",color:"#ec4899",tag:"ریتم و صدا",items:["گوش‌دادن روزانه به موزیک","ساز زدن یا خواندن","کنسرت و اجرای زنده","ساختن پلی‌لیست و میکس"],persona:"دی‌جیِ حال‌خوب",challenge:"این هفته یه پلی‌لیست تازه برای یه حالِ خاص بساز.",suggest:"پلی‌لیست مشترک بسازید و توی ماشین یا دورهمی پخشش کنید."},
+ {emoji:"📖",name:"کتاب و یادگیری",color:"#f59e0b",tag:"کنجکاوی",items:["رمان و داستان","کتاب علمی و رشد فردی","پادکست","یادگیری مهارت یا زبان تازه"],persona:"کاوشگرِ کنجکاو",challenge:"این هفته ۲۰ صفحه از یه کتاب تازه بخون.",suggest:"یه کتاب یا پادکست مشترک انتخاب کنید و درباره‌ش حرف بزنید."},
+ {emoji:"🏃",name:"ورزش و هیجان",color:"#22c55e",tag:"انرژی و آدرنالین",items:["باشگاه و بدنسازی","فوتبال، والیبال و ورزش تیمی","دویدن، دوچرخه و شنا","هیجان: کوه، اسکی و موج‌سواری"],persona:"آدرنالین‌باز",challenge:"این هفته یه ورزش تازه رو فقط برای تفریح امتحان کن.",suggest:"یه مسابقه‌ی دوستانه یا یه تمرین دونفره بذارید."},
+ {emoji:"🎨",name:"هنر و ساختن",color:"#06b6d4",tag:"خلاقیت",items:["نقاشی و طراحی","عکاسی و فیلم‌سازی","نوشتن و وبلاگ","صنایع دستی و DIY"],persona:"سازنده‌ی دنیاهای تازه",challenge:"این هفته یه چیز کوچیک با دست خودت بساز.",suggest:"یه پروژه‌ی خلاقانه‌ی دونفره شروع کنید؛ عکس، نقاشی یا ویدیو."},
+ {emoji:"🍕",name:"غذا و کافه‌گردی",color:"#f97316",tag:"مزه و دورهمی",items:["آشپزی و شیرینی‌پزی","کافه‌گردی","رستوران‌گردی و غذای خیابانی","امتحان‌کردن دستورهای تازه"],persona:"شکموی خوش‌ذوق",challenge:"این هفته یه غذای تازه که تا حالا نپختی درست کن.",suggest:"یه کافه‌ی تازه رو با هم کشف کنید یا با هم آشپزی کنید."},
+ {emoji:"✈️",name:"سفر و طبیعت",color:"#3b82f6",tag:"جاده و کشف",items:["سفر جاده‌ای","طبیعت‌گردی و کمپینگ","شهرگردی و موزه","گشت شبانه‌ی شهر"],persona:"جاده‌بازِ بی‌قرار",challenge:"این هفته یه جای تازه توی شهر خودت رو کشف کن.",suggest:"یه سفر یک‌روزه یا یه گشتِ غروبِ بدون برنامه بچینید."}
+];
+const VIBES=[
+ {name:"بنفش نئونی",label:"شب‌گرد",a:"#a78bfa",b:"#f472b6"},
+ {name:"سبز جنگلی",label:"طبیعت‌گرد",a:"#34d399",b:"#0ea5e9"},
+ {name:"آبی اقیانوسی",label:"آروم و عمیق",a:"#38bdf8",b:"#6366f1"},
+ {name:"نارنجی غروب",label:"پرانرژی",a:"#fb923c",b:"#f43f5e"},
+ {name:"صورتی پاستلی",label:"دنج و لطیف",a:"#f9a8d4",b:"#c084fc"},
+ {name:"زرد آفتابی",label:"شاد و برون‌گرا",a:"#facc15",b:"#fb923c"}
+];
+const SITE_URL="https://nobodyknowkj.github.io/hobby-jars-fa/";
+let ratings=Array(32).fill(0);
+let vibeIdx=0;
+let nameVal="";
+const $=id=>document.getElementById(id);
+const fa=n=>String(n).replace(/\d/g,d=> "۰۱۲۳۴۵۶۷۸۹"[d]);
+const jarAvg=j=>{const v=JARS[j].items.map((_,k)=>ratings[j*4+k]).filter(x=>x>0);return v.length?v.reduce((a,b)=>a+b,0)/v.length:0};
+const jarCount=j=>JARS[j].items.filter((_,k)=>ratings[j*4+k]>0).length;
+function toast(m){const t=$("toast");t.textContent=m;t.style.display="block";setTimeout(()=>t.style.display="none",2600)}
+function save(){try{localStorage.setItem("hobbyJars",JSON.stringify({ratings,vibeIdx,name:nameVal}))}catch(e){}}
+function loadSaved(){try{const d=JSON.parse(localStorage.getItem("hobbyJars")||"null");if(d){ratings=d.ratings&&d.ratings.length===32?d.ratings:ratings;vibeIdx=d.vibeIdx||0;nameVal=d.name||""}}catch(e){}}
+function applyVibe(){const v=VIBES[vibeIdx];document.documentElement.style.setProperty("--accent",v.a);document.documentElement.style.setProperty("--accent2",v.b);document.querySelectorAll(".vibe").forEach((el,i)=>el.classList.toggle("sel",i===vibeIdx));save()}
+function renderVibes(){$("vibes").innerHTML=VIBES.map((v,i)=>`<button class="vibe" data-i="${i}"><div class="sw" style="background:linear-gradient(135deg,${v.a},${v.b})"></div><b>${v.name}</b><small>${v.label}</small></button>`).join("");document.querySelectorAll(".vibe").forEach(b=>b.onclick=()=>{vibeIdx=+b.dataset.i;applyVibe();renderResult()})}
+function renderJars(){
+ $("jars").innerHTML=JARS.map((j,ji)=>{
+  const avg=jarAvg(ji),pct=Math.round(avg/5*100);
+  return `<div class="jarcard" style="--jc:${j.color}"><div class="jarhead">
+   <div class="jar"><div class="liquid" style="height:${pct}%;background:linear-gradient(180deg,${j.color},${j.color}88)"></div></div>
+   <div><h3>${j.emoji} ${j.name}</h3><p>${j.tag} • ${jarCount(ji)} از ۴ مورد امتیاز داده شده</p></div>
+   <div class="pct">${pct?fa(pct)+"٪":"—"}</div></div>
+   <div class="items">${j.items.map((it,ki)=>{const idx=ji*4+ki,cur=ratings[idx];return `<div class="item"><span>${it}</span><div class="dots">${[1,2,3,4,5].map(n=>`<button class="dot ${cur>=n?"on":""}" data-idx="${idx}" data-n="${n}">${fa(n)}</button>`).join("")}</div></div>`}).join("")}</div></div>`
+ }).join("");
+ document.querySelectorAll(".dot").forEach(b=>b.onclick=()=>{const idx=+b.dataset.idx,n=+b.dataset.n;ratings[idx]=ratings[idx]===n?0:n;save();renderAll()});
+ const rated=ratings.filter(x=>x>0).length, filled=JARS.filter((_,j)=>jarCount(j)>0).length;
+ $("progBar").style.width=(rated/32*100)+"%";$("progText").textContent=`${fa(rated)} از ۳۲ مورد امتیاز داده شده`;$("jarText").textContent=`${fa(filled)} از ۸ شیشه پر شده`;
+}
+function sortedJars(rr){return JARS.map((j,i)=>({j,i,avg:(j.items.map((_,k)=>rr[i*4+k]).filter(x=>x>0).reduce((a,b)=>a+b,0)/Math.max(1,j.items.filter((_,k)=>rr[i*4+k]>0).length))})).filter(x=>x.avg>0).sort((a,b)=>b.avg-a.avg)}
+function renderResult(){
+ const top=sortedJars(ratings);
+ const body=$("resultBody");
+ if(!top.length){body.innerHTML=`<p>هنوز چیزی امتیاز ندادی؛ چند تا مورد رو پر کن تا شخصیت تفریحی‌ات معلوم بشه. ✨</p>`;return}
+ const t=top[0].j, vibe=VIBES[vibeIdx];
+ body.innerHTML=`<div class="badge">${vibe.name} • ${vibe.label}</div>
+ <div class="big">${t.persona} ${t.emoji}</div>
+ <p>شیشه‌ی اصلی تو <b>${t.name}</b>ـه و <b>${t.items[0]}</b> و بقیه‌ش هم حسابی پره. ${nameVal?`«${nameVal}»`: "تو"} بیشتر از همه با همین حال‌وهوا شارژ می‌شی.</p>
+ <div class="top3">${top.slice(0,3).map(x=>`<div class="toprow" style="--jc:${x.j.color}"><span>${x.j.emoji} ${x.j.name}</span><div class="bar"><i style="width:${x.avg/5*100}%"></i></div><b>${fa(Math.round(x.avg/5*100))}٪</b></div>`).join("")}</div>
+ <p>🎯 <b>چالش این هفته:</b> ${t.challenge}</p>`;
+}
+function renderAll(){renderJars();renderResult()}
+function encodeData(d){return btoa(unescape(encodeURIComponent(JSON.stringify(d)))).replaceAll("+","-").replaceAll("/","_").replace(/=+$/,"")}
+function decodeData(s){try{const b=s.replaceAll("-","+").replaceAll("_","/");return JSON.parse(decodeURIComponent(escape(atob(b))))}catch(e){return null}}
+function myLink(){return SITE_URL+"#m="+encodeData({v:1,n:nameVal,c:vibeIdx,r:ratings})}
+function compareData(a,b){
+ let diffs=[],common=[];
+ JARS.forEach((j,i)=>{const av=jarAvgFrom(a,i),bv=jarAvgFrom(b,i);if(av&&bv){diffs.push(Math.abs(av-bv));if(av>=4&&bv>=4)common.push(j)}});
+ const match=diffs.length?Math.round((1-(diffs.reduce((x,y)=>x+y,0)/diffs.length)/4)*100):0;
+ return {match,common};
+}
+function jarAvgFrom(rr,i){const v=JARS[i].items.map((_,k)=>rr[i*4+k]).filter(x=>x>0);return v.length?v.reduce((a,b)=>a+b,0)/v.length:0}
+function renderCompare(fd){
+ const {match,common}=compareData(ratings,fd.r);
+ const tops=sortedJars(fd.r);
+ const mine=sortedJars(ratings);
+ const bestCommon=common.sort((a,b)=> (jarAvgFrom(ratings,JARS.indexOf(b))+jarAvgFrom(fd.r,JARS.indexOf(b))) - (jarAvgFrom(ratings,JARS.indexOf(a))+jarAvgFrom(fd.r,JARS.indexOf(a))))[0];
+ $("compareBody").innerHTML=`<div class="compare-row">
+  <div class="mini"><h4>🧑 تو: ${nameVal||"من"}</h4><p>شیشه‌ی اول: ${mine.length?mine[0].j.emoji+" "+mine[0].j.name:"—"}</p></div>
+  <div class="mini"><h4>👤 دوستت: ${fd.n||"دوستت"}</h4><p>شیشه‌ی اول: ${tops.length?tops[0].j.emoji+" "+tops[0].j.name:"—"}</p></div></div>
+ <div class="result" style="margin-top:16px"><div class="big">رفاقت تفریحی: ${fa(match)}٪ 🤝</div>
+ <p>${common.length?`هر دوتون عاشق اینایید: ${common.map(j=>j.emoji+" "+j.name).join(" ، ")}.`:"هنوز یه شیشه‌ی مشترکِ قوی ندارید؛ ولی همین تفاوت، بهانه‌ی خوبی برای امتحان‌کردن چیزهای تازه‌ست!"}</p>
+ <p>💡 <b>پیشنهاد دورهمی:</b> ${bestCommon?bestCommon.suggest:"یه چیزی که هیچ‌کدوم‌تون تا حالا امتحان نکردید رو با هم شروع کنید."}</p></div>
+ <div class="top3">${JARS.map((j,i)=>{const a=jarAvgFrom(ratings,i),b=jarAvgFrom(fd.r,i);return `<div class="toprow" style="--jc:${j.color}"><span style="min-width:110px">${j.emoji} ${j.name}</span><div class="bar"><i style="width:${a/5*100}%"></i></div><span>${a?fa(Math.round(a/5*100))+"٪":"—"}</span><span style="color:var(--muted)"> / </span><span>${b?fa(Math.round(b/5*100))+"٪":"—"}</span></div>`}).join("")}</div>`;
+}
+function drawShare(){
+ const c=$("shareCanvas"),x=c.getContext("2d");
+ const vibe=VIBES[vibeIdx], top=sortedJars(ratings);
+ x.clearRect(0,0,1080,1350);
+ const g=x.createLinearGradient(0,0,1080,1350);g.addColorStop(0,"#1e1035");g.addColorStop(.55,"#12102e");g.addColorStop(1,"#0f0a1e");
+ x.fillStyle=g;x.fillRect(0,0,1080,1350);
+ x.fillStyle=vibe.a;x.globalAlpha=.25;x.beginPath();x.arc(950,120,260,0,7);x.fill();x.fillStyle=vibe.b;x.beginPath();x.arc(80,1180,240,0,7);x.fill();x.globalAlpha=1;
+ x.direction="rtl";x.textAlign="center";
+ x.fillStyle="#fff";x.font="900 44px Vazirmatn, Tahoma";x.fillText("🫙 شیشه‌های سرگرمی",540,110);
+ x.fillStyle="rgba(255,255,255,.75)";x.font="600 30px Vazirmatn, Tahoma";x.fillText("حال‌وهوای تفریحی من",540,165);
+ const t=top.length?top[0].j:null;
+ x.fillStyle="#fff";x.font="900 64px Vazirmatn, Tahoma";
+ x.fillText(t? t.persona : "هنوز شیشه‌ای پر نکردم!",540,260);
+ x.font="600 32px Vazirmatn, Tahoma";x.fillStyle=vibe.a;
+ x.fillText((nameVal?("نتیجه‌ی "+nameVal):"نتیجه‌ی من")+" • "+vibe.name,540,325);
+ // top 3 bars
+ let y=430;
+ x.textAlign="right";
+ (top.slice(0,3)).forEach(row=>{
+   x.fillStyle="#fff";x.font="800 34px Vazirmatn, Tahoma";x.fillText(row.j.emoji+" "+row.j.name,940,y);
+   x.fillStyle="rgba(255,255,255,.2)";roundRect(x,140,y+18,700,26,13);x.fill();
+   x.fillStyle=row.j.color;roundRect(x,140+(700*(1-row.avg/5)),y+18,700*(row.avg/5),26,13);x.fill();
+   x.textAlign="left";x.fillStyle="#fff";x.font="900 32px Vazirmatn, Tahoma";x.fillText(fa(Math.round(row.avg/5*100))+"٪",60,y+22);x.textAlign="right";
+   y+=105;
+ });
+ // all jars mini: one row of 8 small jars with short labels
+ const shorts=["گیم","فیلم","موزیک","کتاب","ورزش","هنر","غذا","سفر"];
+ x.textAlign="center";x.fillStyle="rgba(255,255,255,.75)";x.font="600 28px Vazirmatn, Tahoma";x.fillText("همه‌ی شیشه‌ها",540,y+30);
+ const my=y+60;
+ JARS.forEach((j,i)=>{
+   const cx=85+i*128, avg=jarAvgFrom(ratings,i), h=100*(avg/5);
+   x.fillStyle="rgba(255,255,255,.12)";roundRect(x,cx-45,my,90,115,18);x.fill();
+   if(h>4){x.fillStyle=j.color;roundRect(x,cx-45,my+115-h,90,h,18);x.fill();}
+   x.fillStyle="#fff";x.font="800 26px Vazirmatn, Tahoma";x.fillText(j.emoji, cx, my+150);
+   x.font="600 21px Vazirmatn, Tahoma";x.fillText(shorts[i], cx, my+180);
+ });
+ // footer
+ x.fillStyle="rgba(255,255,255,.85)";x.font="600 26px Vazirmatn, Tahoma";
+ if(t) x.fillText("🎯 چالش این هفته: "+t.challenge,540,1175);
+ x.fillStyle="#fff";x.font="800 30px Vazirmatn, Tahoma";x.fillText("تو هم شیشه‌هات رو پر کن!",540,1235);
+ x.fillStyle="rgba(255,255,255,.65)";x.font="400 24px Vazirmatn, Tahoma";x.fillText("hobby-jars-fa • nobodyknowkj.github.io",540,1290);
+ return c;
+}
+function roundRect(x,a,b,w,h,r){if(w<=0)return;x.beginPath();x.moveTo(a+r,b);x.arcTo(a+w,b,a+w,b+h,r);x.arcTo(a+w,b+h,a,b+h,r);x.arcTo(a,b+h,a,b,r);x.arcTo(a,b,a+w,b,r);x.closePath()}
+async function downloadImage(){
+ if(!sortedJars(ratings).length){toast("اول چند تا مورد رو امتیاز بده 🙂");return}
+ try{await document.fonts.ready}catch(e){}
+ const c=drawShare();
+ c.toBlob(blob=>{const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="hobby-jars.png";a.click();toast("عکس نتیجه دانلود شد 📸")},"image/png");
+}
+async function copyImage(){
+ if(!sortedJars(ratings).length){toast("اول چند تا مورد رو امتیاز بده 🙂");return}
+ try{await document.fonts.ready;const c=drawShare();const blob=await new Promise(r=>c.toBlob(r,"image/png"));await navigator.clipboard.write([new ClipboardItem({"image/png":blob})]);toast("عکس کپی شد؛ حالا توی چت بچسبونش 📋")}catch(e){toast("مرورگر کپی عکس رو پشتیبانی نکرد؛ دانلودش کن 🙂")}
+}
+$("nameInput").addEventListener("input",e=>{nameVal=e.target.value.trim();save();renderResult()});
+$("randomBtn").onclick=()=>{ratings=ratings.map(()=>Math.random()<.25?0:1+Math.floor(Math.random()*5));save();renderAll();toast("شانسی پر شد! 🎲")};
+$("clearBtn").onclick=()=>{ratings=Array(32).fill(0);save();renderAll();toast("همه خالی شد 🧹")};
+$("imgBtn").onclick=downloadImage;$("copyImgBtn").onclick=copyImage;
+$("linkBtn").onclick=async()=>{try{await navigator.clipboard.writeText(myLink());toast("لینک تو کپی شد 🔗")}catch(e){$("friendLink").value=myLink();toast("لینک ساخته شد؛ از کادر مقایسه کپی‌اش کن")}};
+$("shareBtn").onclick=async()=>{try{await document.fonts.ready;const c=drawShare();const blob=await new Promise(r=>c.toBlob(r,"image/png"));const file=new File([blob],"hobby-jars.png",{type:"image/png"});if(navigator.canShare&&navigator.canShare({files:[file]})){await navigator.share({files:[file],title:"شیشه‌های سرگرمی",text:"نتیجه‌ی شیشه‌های سرگرمی من!"})}else{await navigator.clipboard.writeText(myLink());toast("اشتراک مستقیم نشد؛ لینکت کپی شد 🔗")}}catch(e){toast("اشتراک‌گذاری نشد؛ دانلود عکس رو امتحان کن 🙂")}};
+$("compareBtn").onclick=()=>{
+ const raw=$("friendLink").value.trim();const m=raw.match(/#m=([A-Za-z0-9\-_]+)/)||raw.match(/m=([A-Za-z0-9\-_]+)/);
+ const fd=m?decodeData(m[1]):null;
+ if(!fd||!fd.r){toast("لینک معتبر نیست؛ لینک کامل دوستت رو بچسبون 🙂");return}
+ if(!sortedJars(ratings).length){toast("اول شیشه‌های خودت رو پر کن 🙂");return}
+ renderCompare(fd);document.getElementById("compareBody").scrollIntoView({behavior:"smooth",block:"start"});
+};
+// boot: friend link in URL?
+loadSaved();
+$("nameInput").value=nameVal;$("siteUrl").textContent=SITE_URL;
+renderVibes();applyVibe();
+const hash=location.hash.match(/#m=([A-Za-z0-9\-_]+)/);
+if(hash){
+ const fd=decodeData(hash[1]);
+ if(fd&&fd.r){
+   if(sortedJars(ratings).length){$("friendLink").value=location.href;renderCompare(fd);setTimeout(()=>toast("لینک دوستت رسید؛ مقایسه پایین صفحه‌ست 👇"),400)}
+   else{ratings=fd.r;vibeIdx=fd.c||0;nameVal=fd.n||"";$("nameInput").value=nameVal;save();toast("نتیجه‌ی دوستت رو می‌بینی؛ شیشه‌های خودت رو هم پر کن 🙂")}
+ }
+}
+renderAll();
+</script>
+</body>
+</html>
